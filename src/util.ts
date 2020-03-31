@@ -19,5 +19,5 @@ export const requireAdmin = (fn) => (
   ctx: TokenData | null,
 ) => {
   if (!ctx?.admin) throw Error('Forbidden');
-  fn(root, params, ctx);
+  return fn(root, params, ctx);
 };
