@@ -20,7 +20,10 @@ export async function findLesson(name: string) {
     lessonsCollection.find({ $text: { $search: nameSlug } }).toArray(),
   ]);
 
-  return [...lessons1, ...lessons2];
+  const lessons = new Map(
+    [...lessons1, ...lessons2].map((lesson) => [lesson.slug, lesson]),
+  );
+  return Array.from(lessons.values());
 }
 
 export async function getLessons() {
