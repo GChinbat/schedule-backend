@@ -1,7 +1,8 @@
 {
-  "name": "nodejs-ts-project",
+  "private": true,
+  "name": "schedule-backend",
   "version": "1.0.0",
-  "description": "",
+  "description": "Backend for schedule module",
   "main": "prod/index.js",
   "scripts": {
     "build": "npx tsc",
@@ -11,13 +12,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zolbooo/nodejs-ts-boilerplate.git"
+    "url": "git+https://https://github.com/nest-high-school/schedule-backend.git"
   },
   "keywords": [
     "nodejs",
-    "typescript",
-    "boilerplate",
-    "eslint"
+    "graphql",
+    "schedule",
+    "typescript"
   ],
   "prettier": {
     "semi": true,
@@ -27,9 +28,9 @@
   "author": "Zolboobayar Gantumur <zolboobayar@nhs.edu.mn>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/zolbooo/nodejs-ts-boilerplate/issues"
+    "url": "https://github.com/nest-high-school/schedule-backend/issues"
   },
-  "homepage": "https://github.com/zolbooo/nodejs-ts-boilerplate#readme",
+  "homepage": "https://github.com/nest-high-school/schedule-backend#readme",
   "devDependencies": {
     "@nicepack/eslint-ts": "^1.2.3",
     "@types/node": "^13.9.8",
@@ -39,6 +40,8 @@
     "typescript": "^3.8.3"
   },
   "dependencies": {
+    "apollo-server": "^2.11.0",
+    "graphql": "^14.6.0",
     "module-alias": "^2.2.2"
   },
   "_moduleAliases": {
