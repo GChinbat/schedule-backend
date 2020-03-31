@@ -1,4 +1,5 @@
 import _slugify from 'slugify';
+import { TokenData } from './models/users';
 
 export function slugify(input: string): string {
   return _slugify(input).toLowerCase();
@@ -11,3 +12,12 @@ export function checkEnv(key: string) {
     );
   }
 }
+
+export const requireAdmin = (fn) => (
+  root: any,
+  params: any,
+  ctx: TokenData | null,
+) => {
+  if (!ctx?.admin) throw Error('Forbidden');
+  fn(root, params, ctx);
+};
