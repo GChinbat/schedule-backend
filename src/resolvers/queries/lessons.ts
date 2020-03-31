@@ -1,7 +1,7 @@
-import { findLesson as modelFindLesson } from '@/models/lesson';
+import * as model from '@/models/lesson';
 
 export function findLesson(_, { name }: { name: string }) {
-  return modelFindLesson(name);
+  return model.findLesson(name);
 }
 
 export { getLessons } from '@/models/lesson';
