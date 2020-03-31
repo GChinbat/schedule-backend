@@ -30,7 +30,7 @@ export async function getSchedule() {
   const scheduleCollection = db.collection<ScheduleItem>('schedule');
   const scheduleItems = await scheduleCollection.find().toArray();
 
-  const results: ScheduleItem[][] = Array(5).fill([]);
+  const results: ScheduleItem[][] = [[], [], [], [], []];
   scheduleItems.forEach((item) => results[item.day - 1].push(item));
 
   return results;
