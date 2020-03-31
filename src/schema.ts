@@ -3,6 +3,7 @@ import { gql } from 'apollo-server';
 export default gql`
   type ScheduleItem {
     id: String!
+    day: Int!
     endTime: Int!
     startTime: Int!
     lessonGroup: LessonGroup!
@@ -44,16 +45,15 @@ export default gql`
   }
 
   input ScheduleItemInput {
+    day: Int!
     endTime: Int!
     startTime: Int!
     groupSlug: String!
-    lessonSlug: String!
   }
   input EditScheduleItemInput {
+    day: Int
     endTime: Int
     startTime: Int
-    groupSlug: String
-    lessonSlug: String
   }
 
   type Mutation {
