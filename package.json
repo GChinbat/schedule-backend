@@ -50,6 +50,6 @@
     "slugify": "^1.4.0"
   },
   "_moduleAliases": {
-    "@": "dist"
+    "@": "prod"
   }
 }

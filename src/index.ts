@@ -1,3 +1,5 @@
+import 'module-alias/register';
+
 import dotenv from 'dotenv';
 import { ApolloServer } from 'apollo-server';
 
