@@ -7,10 +7,17 @@ import * as lessonMutations from './mutations/lessons';
 
 import * as lessonGroupMutations from './mutations/lessonGroup';
 
+import * as scheduleQueries from './queries/schedule';
+import * as scheduleItemMutations from './mutations/scheduleItem';
+
 export default {
   Lesson,
   LessonGroup,
   ScheduleItem,
-  Query: { ...lessonQueries },
-  Mutation: { ...lessonMutations, ...lessonGroupMutations },
+  Query: { ...lessonQueries, ...scheduleQueries },
+  Mutation: {
+    ...lessonMutations,
+    ...lessonGroupMutations,
+    ...scheduleItemMutations,
+  },
 };
