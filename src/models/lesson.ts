@@ -62,7 +62,7 @@ export async function editLesson(
   lesson: { name?: string; teachers?: string[] },
 ) {
   const lessonsCollection = db.collection<Lesson>('lessons');
-  if ((await lessonsCollection.find({ slug }).count()) > 0) {
+  if ((await lessonsCollection.find({ slug }).count()) === 0) {
     throw Error(`Lesson ${slug} was not found!`);
   }
 
