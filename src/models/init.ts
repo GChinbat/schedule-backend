@@ -8,4 +8,6 @@ export default async () => {
     useUnifiedTopology: true,
   });
   db = client.db(process.env.DB_NAME);
+
+  await db.collection('lessons').createIndex({ name: 'text', slug: 'text' });
 };
