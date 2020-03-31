@@ -1,6 +1,7 @@
 import dotenv from 'dotenv';
 import { ApolloServer } from 'apollo-server';
 
+import initDB from './models/init';
 import schema from './schema';
 import resolvers from './resolvers';
 
@@ -21,6 +22,8 @@ const server = new ApolloServer({
   resolvers,
 });
 
-server.listen().then(({ url }) => {
-  console.log(`🚀  Server ready at ${url}`);
-});
+initDB()
+  .then(() => server.listen())
+  .then(({ url }) => {
+    console.log(`🚀  Server ready at ${url}`);
+  });
