@@ -1,5 +1,6 @@
-import slugify from 'slugify';
 import { ObjectID } from 'mongodb';
+
+import { slugify } from '@/util';
 
 import { db } from './init';
 
