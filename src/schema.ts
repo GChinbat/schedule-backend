@@ -31,7 +31,7 @@ export default gql`
 
   input LessonInput {
     name: String!
-    teacher: String
+    teachers: [String!]!
   }
   input EditLessonInput {
     name: String
