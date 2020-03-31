@@ -62,12 +62,8 @@ export default gql`
     removeLesson(lessonSlug: String!): Boolean
 
     addLessonGroup(group: LessonGroupInput!): LessonGroup
-    renameLessonGroup(
-      lessonSlug: String!
-      groupSlug: String!
-      newName: String!
-    ): LessonGroup
-    removeLessonGroup(lessonSlug: String!, groupSlug: String!): Boolean
+    renameLessonGroup(groupSlug: String!, newName: String!): LessonGroup
+    removeLessonGroup(groupSlug: String!): Boolean
 
     addScheduleItem(item: ScheduleItemInput!): ScheduleItem
     editScheduleItem(id: String!, item: EditScheduleItemInput!): ScheduleItem
