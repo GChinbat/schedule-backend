@@ -3,18 +3,23 @@ import { ObjectID } from 'mongodb';
 import { db } from './init';
 import { LessonGroup } from './lessonGroup';
 
+export type Time = {
+  hours: number;
+  minutes: number;
+};
+
 export type ScheduleItem = {
   _id?: ObjectID;
   day: number;
-  endTime: number;
-  startTime: number;
+  endTime: Time;
+  startTime: Time;
   lessonGroup: ObjectID;
 };
 
 export type ScheduleItemInput = {
   day: number;
-  endTime: number;
-  startTime: number;
+  endTime: Time;
+  startTime: Time;
   groupSlug: string;
 };
 export type EditScheduleItemInput = Partial<
