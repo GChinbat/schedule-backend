@@ -1,6 +1,7 @@
 import 'module-alias/register';
 
 import dotenv from 'dotenv';
+import depthLimit from 'graphql-depth-limit';
 import { ApolloServer } from 'apollo-server';
 
 import initDB from './models/init';
@@ -22,6 +23,7 @@ if (!process.env.DB_ADDRESS) {
 const server = new ApolloServer({
   typeDefs: schema,
   resolvers,
+  validationRules: [depthLimit(5)],
 });
 
 initDB()
