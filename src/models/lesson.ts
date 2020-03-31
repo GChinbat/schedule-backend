@@ -12,6 +12,11 @@ export type Lesson = {
   teachers: string[];
 };
 
+export async function getLesson(id: ObjectID): Promise<Lesson | null> {
+  const lessonsCollection = db.collection<Lesson>('lessons');
+  return (await lessonsCollection.findOne({ _id: id })) ?? null;
+}
+
 export async function findLesson(name: string) {
   const nameSlug = slugify(name);
 
