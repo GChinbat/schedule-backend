@@ -1,19 +1,16 @@
 import * as model from '@/models/scheduleItem';
+import { requireAdmin } from '@/util';
 
-export function addScheduleItem(
-  _,
-  { item }: { item: model.ScheduleItemInput },
-) {
-  return model.addScheduleItem(item);
-}
+export const addScheduleItem = requireAdmin(
+  (_, { item }: { item: model.ScheduleItemInput }) =>
+    model.addScheduleItem(item),
+);
 
-export function editScheduleItem(
-  _,
-  { id, item }: { id: string; item: model.EditScheduleItemInput },
-) {
-  return model.editScheduleItem(id, item);
-}
+export const editScheduleItem = requireAdmin(
+  (_, { id, item }: { id: string; item: model.EditScheduleItemInput }) =>
+    model.editScheduleItem(id, item),
+);
 
-export function removeScheduleItem(_, { id }: { id: string }) {
-  return model.removeScheduleItem(id);
-}
+export const removeScheduleItem = requireAdmin((_, { id }: { id: string }) =>
+  model.removeScheduleItem(id),
+);

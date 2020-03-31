@@ -1,19 +1,17 @@
 import * as model from '@/models/lessonGroup';
+import { requireAdmin } from '@/util';
 
-export function addLessonGroup(
-  _,
-  { group }: { group: model.LessonGroupInput },
-) {
-  return model.addLessonGroup(group);
-}
+export const addLessonGroup = requireAdmin(
+  (_, { group }: { group: model.LessonGroupInput }) =>
+    model.addLessonGroup(group),
+);
 
-export function renameLessonGroup(
-  _,
-  { groupSlug, newName }: { groupSlug: string; newName: string },
-) {
-  return model.renameLessonGroup(groupSlug, newName);
-}
+export const renameLessonGroup = requireAdmin(
+  (_, { groupSlug, newName }: { groupSlug: string; newName: string }) =>
+    model.renameLessonGroup(groupSlug, newName),
+);
 
-export function removeLessonGroup(_, { groupSlug }: { groupSlug: string }) {
-  return model.removeLessonGroup(groupSlug);
-}
+export const removeLessonGroup = requireAdmin(
+  (_, { groupSlug }: { groupSlug: string }) =>
+    model.removeLessonGroup(groupSlug),
+);

@@ -1,4 +1,5 @@
 import * as model from '@/models/lesson';
+import { requireAdmin } from '@/util';
 
 type LessonInput = {
   name: string;
@@ -6,20 +7,18 @@ type LessonInput = {
 };
 type EditLessonInput = Partial<LessonInput>;
 
-export function addLesson(
-  _,
-  { lesson: { name, teachers } }: { lesson: LessonInput },
-) {
-  return model.addLesson(name, teachers);
-}
+export const addLesson = requireAdmin(
+  (_, { lesson: { name, teachers } }: { lesson: LessonInput }) =>
+    model.addLesson(name, teachers),
+);
 
-export function editLesson(
-  _,
-  { lessonSlug, lesson }: { lessonSlug: string; lesson: EditLessonInput },
-) {
-  return model.editLesson(lessonSlug, lesson);
-}
+export const editLesson = requireAdmin(
+  (
+    _,
+    { lessonSlug, lesson }: { lessonSlug: string; lesson: EditLessonInput },
+  ) => model.editLesson(lessonSlug, lesson),
+);
 
-export function removeLesson(_, { lessonSlug }: { lessonSlug: string }) {
-  return model.removeLesson(lessonSlug);
-}
+export const removeLesson = requireAdmin(
+  (_, { lessonSlug }: { lessonSlug: string }) => model.removeLesson(lessonSlug),
+);
