@@ -7,18 +7,12 @@ import { ApolloServer } from 'apollo-server';
 import initDB from './models/init';
 import schema from './schema';
 import resolvers from './resolvers';
+import { checkEnv } from './util';
 
 dotenv.config();
-if (!process.env.DB_NAME) {
-  throw Error(
-    'Did not find DB_NAME environment variable. Did you set it in .env file?',
-  );
-}
-if (!process.env.DB_ADDRESS) {
-  throw Error(
-    'Did not find DB_ADDRESS environment variable. Did you set it in .env file?',
-  );
-}
+checkEnv('DB_NAME');
+checkEnv('DB_ADDRESS');
+checkEnv('APP_SECRET');
 
 const server = new ApolloServer({
   typeDefs: schema,
