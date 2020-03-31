@@ -65,3 +65,9 @@ export async function editLesson(
     )
   ).value;
 }
+
+export async function removeLesson(slug: string) {
+  const lessonsCollection = db.collection<Lesson>('lessons');
+  await lessonsCollection.deleteOne({ slug });
+  return true;
+}
