@@ -1,3 +1,5 @@
+import auth from './auth';
+
 import Lesson from './fields/lesson';
 import LessonGroup from './fields/lessonGroup';
 import ScheduleItem from './fields/scheduleItem';
@@ -14,10 +16,11 @@ export default {
   Lesson,
   LessonGroup,
   ScheduleItem,
-  Query: { ...lessonQueries, ...scheduleQueries },
+  Query: { ...lessonQueries, ...scheduleQueries, login: auth.login },
   Mutation: {
     ...lessonMutations,
     ...lessonGroupMutations,
     ...scheduleItemMutations,
+    register: auth.register,
   },
 };

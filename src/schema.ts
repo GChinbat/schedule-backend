@@ -33,6 +33,8 @@ export default gql`
 
     # schedule is array with length 5, with schedule items
     schedule: [[ScheduleItem!]!]!
+
+    login(username: String!, password: String!): String
   }
 
   input LessonInput {
@@ -77,5 +79,7 @@ export default gql`
     addScheduleItem(item: ScheduleItemInput!): ScheduleItem
     editScheduleItem(id: String!, item: EditScheduleItemInput!): ScheduleItem
     removeScheduleItem(id: String!): Boolean
+
+    register(username: String!, password: String!): Boolean
   }
 `;
