@@ -28,7 +28,18 @@ export type EditScheduleItemInput = Partial<
 
 export async function getSchedule() {
   const scheduleCollection = db.collection<ScheduleItem>('schedule');
-  const scheduleItems = await scheduleCollection.find().toArray();
+  const scheduleItems = await scheduleCollection
+    .aggregate([
+      {
+        $sort: {
+          'startTime.hours': 1,
+          'startTime.minutes': 1,
+          'endTime.hours': 1,
+          'endTime.minutes': 1,
+        },
+      },
+    ])
+    .toArray();
 
   const results: ScheduleItem[][] = [[], [], [], [], []];
   scheduleItems.forEach((item) => results[item.day - 1].push(item));
