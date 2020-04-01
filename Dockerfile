@@ -18,4 +18,5 @@ RUN npm ci --only=production
 
 COPY --from=builder /usr/src/app/schedule-app/prod ./prod
 
+EXPOSE 4000
 CMD [ "npm", "start" ]
