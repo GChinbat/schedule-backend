@@ -1,0 +1,30 @@
+name: Build and deploy
+on: [push]
+jobs:
+  build:
+    if: github.ref == 'refs/heads/master'
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Publish to Registry
+        uses: HurricanKai/Publish-Docker-Github-Action@master
+        with:
+          name: nesthighschool/schedule-backend
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_ACCESS_TOKEN }}
+  deploy:
+    name: Deploy
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy Docker image
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.PRIVATE_KEY }}
+          script: |
+            docker pull nesthighschool/schedule-backend
+            docker rm -f schedule-backend || true
+            docker run -dit --network nhs -e APP_SECRET=${{ secrets.APP_SECRET }} -e DB_ADDRESS=${{ secrets.DB_ADDRESS }} -e DB_NAME=${{ secrets.DB_NAME }} -e DB_PASSWORD=${{ secrets.DB_PASSWORD }} -e DB_USERNAME=${{ secrets.DB_USERNAME }} --name schedule-backend nhs/schedule-backend
