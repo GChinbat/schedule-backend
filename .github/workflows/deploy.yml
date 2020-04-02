@@ -36,4 +36,4 @@ jobs:
           script: |
             docker pull nesthighschool/schedule-backend
             docker rm -f schedule-backend || true
-            docker run -dit --network nhs -e APP_SECRET=${{ secrets.APP_SECRET }} -e DB_ADDRESS=${{ secrets.DB_ADDRESS }} -e DB_NAME=${{ secrets.DB_NAME }} -e DB_PASSWORD=${{ secrets.DB_PASSWORD }} -e DB_USERNAME=${{ secrets.DB_USERNAME }} --name schedule-backend nhs/schedule-backend
+            docker run -dit --network nhs -e APP_SECRET=${{ secrets.APP_SECRET }} -e DB_ADDRESS=${{ secrets.DB_ADDRESS }} -e DB_NAME=${{ secrets.DB_NAME }} -e DB_PASSWORD=${{ secrets.DB_PASSWORD }} -e DB_USERNAME=${{ secrets.DB_USERNAME }} --name schedule-backend nesthighschool/schedule-backend
