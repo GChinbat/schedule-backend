@@ -32,7 +32,7 @@ export async function login(
 ): Promise<string> {
   const usersCollection = db.collection<User>('users');
   const user = await usersCollection.findOne({ username });
-  if (!(await argon2.verify(user.password, password))) {
+  if (!(await argon2.verify(user?.password, password))) {
     throw Error('Invalid login or password');
   }
   return jwt.sign(
