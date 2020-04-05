@@ -33,6 +33,7 @@ export default gql`
 
     # schedule is array with length 5, with schedule items
     schedule: [[ScheduleItem!]!]!
+    scheduleForGroup(groupSlug: String!): [[ScheduleItem!]!]!
 
     login(username: String!, password: String!): String
   }

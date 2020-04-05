@@ -46,6 +46,29 @@ export async function getSchedule() {
 
   return results;
 }
+export async function getScheduleForGroup(groupSlug: string) {
+  const groupsCollection = db.collection<LessonGroup>('lessonGroups');
+  const group = await groupsCollection.findOne({ slug: groupSlug });
+  if (!group) {
+    throw Error(`Lesson group ${groupSlug} was not found`);
+  }
+
+  const scheduleCollection = db.collection<ScheduleItem>('schedule');
+  const scheduleItems = await scheduleCollection
+    .find({ lessonGroup: group._id })
+    .sort({
+      'startTime.hours': 1,
+      'startTime.minutes': 1,
+      'endTime.hours': 1,
+      'endTime.minutes': 1,
+    })
+    .toArray();
+
+  const results: ScheduleItem[][] = [[], [], [], [], []];
+  scheduleItems.forEach((item) => results[item.day - 1].push(item));
+
+  return results;
+}
 
 export async function getScheduleItem(
   id: ObjectID,
