@@ -44,7 +44,7 @@ export default gql`
   }
   input EditLessonInput {
     name: String
-    teacher: String
+    teachers: [String!]
   }
 
   input LessonGroupInput {
